@@ -92,6 +92,10 @@ public class ClockDisplay
         }else if(hours.getValue() >= 13) {
             displayString = (hours.getValue() - 12) + ":" +
                                     minutes.getDisplayValue() + setTime;
+            if(hours.getValue() >=13 && hours.getValue() < 22)  {
+                displayString = "0" + (hours.getValue() - 12) + ":" +
+                                    minutes.getDisplayValue() + setTime;
+                                }
         }else {
             displayString = hours.getDisplayValue() + ":" + 
                         minutes.getDisplayValue() + setTime;
