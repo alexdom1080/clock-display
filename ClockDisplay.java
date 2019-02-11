@@ -1,4 +1,4 @@
-
+    
 /**
  * The ClockDisplay class implements a digital clock display for a
  * European-style 24 hour clock. The clock shows hours and minutes. The 
@@ -16,6 +16,7 @@ public class ClockDisplay
 {
     private NumberDisplay hours;
     private NumberDisplay minutes;
+    private String setTime;
     private String displayString;    // simulates the actual display
     
     /**
@@ -26,6 +27,7 @@ public class ClockDisplay
     {
         hours = new NumberDisplay(24);
         minutes = new NumberDisplay(60);
+        setTime = "AM";
         updateDisplay();
     }
 
@@ -78,7 +80,21 @@ public class ClockDisplay
      */
     private void updateDisplay()
     {
-        displayString = hours.getDisplayValue() + ":" + 
-                        minutes.getDisplayValue();
+        if(hours.getValue() >= 12) {
+            setTime = "PM";
+        }else {
+            setTime = "AM";
+        }
+        
+        if(hours.getValue() == 0 ) {
+            displayString = "12" + ":" + 
+                        minutes.getDisplayValue() + setTime;
+        }else if(hours.getValue() >= 13) {
+            displayString = (hours.getValue() - 12) + ":" +
+                                    minutes.getDisplayValue() + setTime;
+        }else {
+            displayString = hours.getDisplayValue() + ":" + 
+                        minutes.getDisplayValue() + setTime;
+        }
     }
 }
