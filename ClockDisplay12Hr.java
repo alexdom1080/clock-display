@@ -16,6 +16,8 @@ public class ClockDisplay12Hr
 {
     private NumberDisplay hours;
     private NumberDisplay minutes;
+    private int meridian = 0;
+    private String setTime;
     private String displayString;    // simulates the actual display
 
     /**
@@ -78,7 +80,18 @@ public class ClockDisplay12Hr
      */
     private void updateDisplay()
     {
+        if(hours.getValue() == 12 && minutes.getValue() == 0) {
+            meridian ++;
+        }
+        
+        if(meridian == 0) {
+                setTime = "AM";
+            }else if(meridian == 1 ) {
+                setTime = "PM";
+            }else {
+                setTime = "AM";
+            }
         displayString = hours.getDisplayValue() + ":" +
-                        minutes.getDisplayValue();
+                            minutes.getDisplayValue() + setTime;
     }
 }
